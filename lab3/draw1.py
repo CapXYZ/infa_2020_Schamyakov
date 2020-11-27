@@ -1,10 +1,11 @@
+import random
 import pygame
 from pygame.draw import *
 
 pygame.init()
 
 FPS = 30
-screen = pygame.display.set_mode((400, 400))
+screen = pygame.display.set_mode((800, 600))
 
 '''
 x1 = 100; y1 = 100
@@ -17,7 +18,7 @@ x = x1 + h
 for i in range(N):
     line(screen, color, (x, y1), (x, y2))
     x += h
-'''
+
 rect(screen, (225, 225, 225), (0, 0, 400, 400)) #фон
 circle(screen, (255, 255, 0), (200, 200), 150) #голова
 circle(screen, (0, 0, 0), (200, 200), 150, 2) #обводка головы
@@ -34,6 +35,14 @@ line(screen, 0, (50, 60), (180, 120), 20) #левая бровь
 line(screen, 0, (230, 125), (330, 85), 20) #правая бровь
 
 line(screen, 0, (140, 280), (260, 280), 30) #рот
+'''
+
+
+def letter_draw(x, y, koof_size=1):
+    pygame.draw.ellipse(screen, (255, 255, 0), (x, y, x, y), 10)
+
+
+letter_draw(200,200)
 
 pygame.display.update()
 clock = pygame.time.Clock()
