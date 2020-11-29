@@ -2,6 +2,7 @@ import random, sys
 import pygame
 
 pygame.init()
+pygame.font.init()
 
 # Define the colors we will use in RGB format
 color_dict = dict(
@@ -11,11 +12,12 @@ color_dict = dict(
     GREEN=(0, 255, 0),
     RED=(255, 0, 0)
 )
-list_letter = 'aoгентипмкр'
+list_letter = 'ao'  #aoгентипмкр
 
 # Set the height and width of the screen
 size = [400, 400]
 screen = pygame.display.set_mode(size)
+screen.fill((random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)))
 
 center = (200, 200)
 center_x, center_y = center
@@ -146,6 +148,22 @@ key_dict = {'a': pygame.K_f,
             }
 symbal = letter(list_letter)
 abc[symbal](center_x, center_y)
+count_yes = 0
+count_no = 0
+
+font = pygame.font.Font(None, 25)
+text_yes = font.render(
+    f"Правильно: ", True, (0, 0, 0))
+text_no = font.render(
+    f"Не правильно: ", True, (0, 0, 0))
+place_yes = text_yes.get_rect(
+    center=(100, 20))
+place_no = text_yes.get_rect(
+    center=(100, 50))
+screen.blit(text_yes, place_yes)
+screen.blit(text_no, place_no)
+pygame.display.update()
+
 while not done:
 
     for i in pygame.event.get():
@@ -154,8 +172,19 @@ while not done:
         elif i.type == pygame.KEYDOWN:
             if i.key == key_dict[symbal]:
                 screen.fill((random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)))
+                count_yes += 1
                 symbal = letter(list_letter)
                 abc[symbal](center_x, center_y)
+            else:
+                screen.fill((random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)))
+                abc[symbal](center_x, center_y)
+                count_no += 1
+    text_yes = font.render(
+        f"Правильно:     {count_yes}", True, (0, 0, 0))
+    text_no = font.render(
+        f"Не правильно:  {count_no}", True, (0, 0, 0))
+    screen.blit(text_yes, place_yes)
+    screen.blit(text_no, place_no)
     pygame.display.update()
     clock.tick(30)
 
