@@ -1,4 +1,6 @@
-import random, sys
+import random
+import sys
+
 import pygame
 
 pygame.init()
@@ -14,7 +16,6 @@ color_dict = dict(
 )
 list_letter = 'ao'  #aoгентипмкр
 
-# Set the height and width of the screen
 size = [400, 400]
 screen = pygame.display.set_mode(size)
 screen.fill((random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)))
@@ -26,8 +27,8 @@ pygame.display.set_caption("Учимся печатать")
 
 
 def letter_draw_O(x, y, koof_size=1, ):
-    pygame.draw.ellipse(screen, (255, 55, 0), (x - x // 3, y // 3,
-                                               x - x // 4, y + y // 6), 20)
+    pygame.draw.ellipse(screen, (255, 55, 0), (x - x // 3, y // 2,
+                                               x - x // 4, y), 20)
 
 
 # Буква О
@@ -118,7 +119,7 @@ def letter(l1):
     return random.choice(l1)
 
 
-# Loop until the user clicks the close button.
+
 done = False
 clock = pygame.time.Clock()
 
@@ -151,7 +152,7 @@ abc[symbal](center_x, center_y)
 count_yes = 0
 count_no = 0
 
-font = pygame.font.Font(None, 25)
+font = pygame.font.SysFont("arial", 24, )
 text_yes = font.render(
     f"Правильно: ", True, (0, 0, 0))
 text_no = font.render(
